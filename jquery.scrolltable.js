@@ -14,12 +14,13 @@
 * <https://raw.github.com/th3uiguy/jquery-scrolltable/master/MIT-LICENSE.txt>
 */
 
-;(function($) {
+(function($) {
 $.widget( "ui.scrolltable", {
 
 	options: {
 		height: 300,
 		stripe: false,
+		setWidths: true,
 		oddClass: "st-tr-odd",
 		evenClass: "st-tr-even",
 		firstClass: "st-tr-first",
@@ -50,9 +51,12 @@ $.widget( "ui.scrolltable", {
 			.find('.st-body').closest('tr').remove();
 
 		$self.find('>thead th, >thead td')
-				.add($self.find('>tbody>tr').eq(0).find('td')).width(function(){
-					return $(this).data('prevWidth') || 'auto';
-				});
+			.each(function(){
+				$(this).prop('colspan', $(this).data('colspan'));
+			})
+			.add($self.find('>tbody>tr').eq(0).find('td')).width(function(){
+				return $(this).data('prevWidth') || 'auto';
+			});
 
 		var opts = this.options;
 		$self.find('tr')
@@ -67,7 +71,7 @@ $.widget( "ui.scrolltable", {
 	_convertTable: function($container){
 		var opts = this.options;
 
-		this._setWidths($container);
+		if(opts.setWidths) this._setWidths($container);
 		var $head = $('<table class="st-head-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>thead'));
 		var $body = $('<table class="st-body-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>tbody'));
 
@@ -79,6 +83,10 @@ $.widget( "ui.scrolltable", {
 			.find('tr')
 				.first().addClass(opts.firstClass).end()
 				.last().addClass(opts.lastClass);
+
+		$container.find('.st-head thead th, .st-head thead td').each(function(){
+			$(this).data('colspan', $(this).prop('colspan')).removeProp('colspan');
+		});
 	},
 
 	_stripe: function($container){

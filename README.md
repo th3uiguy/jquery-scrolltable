@@ -17,26 +17,54 @@ Description
 Example
 ---------------------
 ```js
-
+$('table.scrollTable').scrolltable({
+	stripe: true,
+	oddClass: 'odd'
+});
 ```
 
 
 
 Options
 ---------------------
-#### container ####
-*type: jQuery Object or Selector*   
-*default: uses self as the container*
+#### height ####
+*type: Integer*   
+*default: 300*
 
-#### select ####
-*type: function*   
-*default: null*
 
+#### setWidths ####
+*type: Boolean*   
+*default: true*
+
+
+#### stripe ####
+*type: Boolean*   
+*default: false*
+
+
+#### oddClass ####
+*type: String*   
+*default: "st-tr-odd"*
+
+
+#### evenClass ####
+*type: String*   
+*default: "st-tr-even"*
+
+
+#### firstClass ####
+*type: String*   
+*default: "st-tr-first"*
+
+
+#### lastClass ####
+*type: String*   
+*default: "st-tr-last"*
 
 
 
 <br /><br />
 Copyright (c) 2012, Spencer Neese [https://github.com/th3uiguy/](https://github.com/th3uiguy/)   
 Dual licensed under the 
-[MIT](https://raw.github.com/th3uiguy/jquery-scrolltable/master/MIT-LICENSE.txt) or 
+[MIT](https://raw.github.com/th3uiguy/jquery-scrolltable/master/MIT-LICENSE.txt) and 
 [GPL](https://raw.github.com/th3uiguy/jquery-scrolltable/master/GPL-LICENSE.txt) Version 2 licenses. 
