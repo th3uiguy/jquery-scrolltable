@@ -4,7 +4,7 @@
 * @fileoverview 
 * @link https://github.com/th3uiguy/jquery-scrolltable
 * @author Spencer Neese
-* @version 0.5
+* @version 0.5.1
 * @requires jQuery UI 1.7+ and jQuery 1.3.2+
 * @license jQuery Scroll Table Plug-in
 *
@@ -18,7 +18,8 @@
 $.widget( "ui.scrolltable", {
 
 	options: {
-		height: 300,
+		height: 'auto',
+		maxHeight: 300,
 		stripe: false,
 		setWidths: true,
 		oddClass: "st-tr-odd",
@@ -72,17 +73,24 @@ $.widget( "ui.scrolltable", {
 		var opts = this.options;
 
 		if(opts.setWidths) this._setWidths($container);
-		var $head = $('<table class="st-head-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>thead'));
-		var $body = $('<table class="st-body-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>tbody'));
+		var $head = $('<table class="st-head-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>thead')).css('width', '100%');
+		var $body = $('<table class="st-body-table" cellpadding="0" cellspacing="0" border="0" />').append($container.find('>tbody')).css('width', '100%');
 
 		$container
 			.addClass('st-container')
 			.html('<thead><tr><td class="st-head"></td></tr></thead><tbody><tr><td class="st-body"><div class="st-body-scroll"></div></td></tr></tbody>')
-			.find('.st-head').append($head).end()
-			.find('.st-body-scroll').append($body).css('max-height', opts.height + "px")
+			.find('.st-head').css('padding', '0 20px 0 0').append($head).end()
+			.find('.st-body').css('padding', '0')
+			.find('.st-body-scroll').css('overflow-y', 'auto').append($body)
 			.find('tr')
 				.first().addClass(opts.firstClass).end()
 				.last().addClass(opts.lastClass);
+		if(isFinite(opts.height)){
+			$container.find('.st-body-scroll').css('height', opts.height + "px");
+		}
+		else if(isFinite(opts.maxHeight)){
+			$container.find('.st-body-scroll').css('max-height', opts.maxHeight + "px");
+		}
 
 		$container.find('.st-head thead th, .st-head thead td').each(function(){
 			$(this).data('colspan', $(this).prop('colspan')).removeProp('colspan');
