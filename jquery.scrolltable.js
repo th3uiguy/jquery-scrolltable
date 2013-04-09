@@ -4,7 +4,7 @@
 * @fileoverview 
 * @link https://github.com/th3uiguy/jquery-scrolltable
 * @author Spencer Neese
-* @version 0.5.1
+* @version 0.5.2
 * @requires jQuery UI 1.7+ and jQuery 1.3.2+
 * @license jQuery Scroll Table Plug-in
 *

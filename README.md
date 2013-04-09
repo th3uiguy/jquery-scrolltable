@@ -1,7 +1,7 @@
 jQuery Scroll Table
 ====================
 By: Spencer Neese [https://github.com/th3uiguy/](https://github.com/th3uiguy/)   
-Version: 0.5.1   
+Version: 0.5.2   
 Requires: jQuery UI 1.7+ and jQuery 1.3.2+   
 Demo: [http://jsfiddle.net/th3uiguy/Yahvv/](http://jsfiddle.net/th3uiguy/Yahvv/)   
 Git: [https://github.com/th3uiguy/jquery-scrolltable.git](https://github.com/th3uiguy/jquery-scrolltable.git)   
